@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Сайт компании - премиум-концепт</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0d0e10;--ink:#f2f0eb;--muted:#9a9890;--line:#26282c;--a:#c8ff3d;--card:#16181b}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Manrope,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1280px;margin:0 auto;padding:0 24px}
+header{position:fixed;inset:0 0 auto;z-index:40;mix-blend-mode:difference}
+header .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:20px;padding-bottom:20px}
+.logo{font:800 18px Unbounded;letter-spacing:-.02em;color:#fff}
+nav{display:flex;gap:22px}
+nav a{font-weight:700;font-size:14px;color:#fff;position:relative}
+nav a::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;background:#fff;transform:scaleX(0);transform-origin:right;transition:transform .4s cubic-bezier(.7,0,.2,1)}
+nav a:hover::after,nav a.on::after{transform:scaleX(1);transform-origin:left}
+@media(max-width:820px){nav{display:none}}
+/* шторка перехода */
+.wipe{position:fixed;inset:0;z-index:60;pointer-events:none;display:grid;grid-template-columns:repeat(5,1fr)}
+.wipe i{background:var(--a);transform:scaleY(0);transform-origin:bottom}
+.wipe.in i{animation:wi .5s cubic-bezier(.7,0,.3,1) forwards}
+.wipe.out i{transform:scaleY(1);transform-origin:top;animation:wo .55s cubic-bezier(.7,0,.3,1) forwards}
+@keyframes wi{to{transform:scaleY(1)}}@keyframes wo{to{transform:scaleY(0)}}
+.wipe i:nth-child(2){animation-delay:.04s!important}.wipe i:nth-child(3){animation-delay:.08s!important}.wipe i:nth-child(4){animation-delay:.12s!important}.wipe i:nth-child(5){animation-delay:.16s!important}
+.page{display:none}.page.on{display:block}
+/* hero */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:60px;position:relative;overflow:hidden}
+.hero h1{font:800 clamp(44px,9vw,138px)/.92 Unbounded;letter-spacing:-.05em}
+.line{display:block;overflow:hidden}.line span{display:inline-block;transform:translateY(110%)}
+.page.on .line span{animation:up 1s cubic-bezier(.2,.8,.2,1) forwards}
+.page.on .line:nth-child(2) span{animation-delay:.1s}.page.on .line:nth-child(3) span{animation-delay:.2s}
+@keyframes up{to{transform:none}}
+.hero h1 em{font-style:normal;color:var(--a)}
+.hero .row{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-top:34px;flex-wrap:wrap}
+.hero p{max-width:440px;color:var(--muted);font-size:18px}
+.mag{display:inline-grid;place-items:center;width:150px;height:150px;border-radius:50%;background:var(--a);color:#0d0e10;font:800 15px Manrope;text-align:center;transition:transform .2s;cursor:pointer}
+.blob{position:absolute;right:-12vw;top:8vh;width:60vw;height:60vw;max-width:820px;max-height:820px;border-radius:50%;background:conic-gradient(from 0deg,#c8ff3d,#3dd6ff,#7a5cff,#c8ff3d);filter:blur(80px);opacity:.28;animation:rot 18s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
+/* marquee */
+.mq{border-block:1px solid var(--line);overflow:hidden;padding:22px 0}
+.mq div{display:flex;gap:60px;width:max-content;animation:m 28s linear infinite;font:700 22px Unbounded;color:#4b4d52}
+@keyframes m{to{transform:translateX(-50%)}}
+section{padding:110px 0}
+.k{font:700 13px Manrope;letter-spacing:.2em;text-transform:uppercase;color:var(--a)}
+h2{font:800 clamp(32px,5vw,64px)/1 Unbounded;letter-spacing:-.04em;margin:14px 0 40px}
+.nums{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+@media(max-width:820px){.nums{grid-template-columns:1fr 1fr}}
+.nums div{background:var(--bg);padding:34px 26px}
+.nums b{display:block;font:800 clamp(36px,5vw,60px) Unbounded;letter-spacing:-.04em}
+.nums span{color:var(--muted)}
+.svc{border-top:1px solid var(--line)}
+.sv{border-bottom:1px solid var(--line);cursor:pointer}
+.sv .h{display:flex;justify-content:space-between;align-items:center;padding:28px 0;gap:20px}
+.sv .h b{font:700 clamp(22px,3vw,36px) Unbounded;letter-spacing:-.03em;transition:color .3s,transform .4s}
+.sv:hover .h b{color:var(--a);transform:translateX(10px)}
+.sv .h i{font-style:normal;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:transform .4s,background .3s}
+.sv.open .h i{transform:rotate(45deg);background:var(--a);color:#0d0e10}
+.sv .b{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s cubic-bezier(.2,.8,.2,1)}
+.sv.open .b{grid-template-rows:1fr}
+.sv .b>div{overflow:hidden;color:var(--muted);max-width:640px}
+.sv .b p{padding-bottom:28px}
+.cases{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:820px){.cases{grid-template-columns:1fr}}
+.cs{border-radius:22px;overflow:hidden;background:var(--card);border:1px solid var(--line);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.cs:hover{transform:translateY(-8px)}
+.cs .im{aspect-ratio:4/3;position:relative;overflow:hidden}
+.cs .im div{position:absolute;inset:0;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.cs:hover .im div{transform:scale(1.08) rotate(-1deg)}
+.cs .t{padding:20px}.cs .t b{font:700 20px Unbounded;display:block}.cs .t span{color:var(--muted);font-size:14px}
+.rv{opacity:0;transform:translateY(40px);transition:opacity .9s,transform .9s cubic-bezier(.2,.8,.2,1)}.rv.in{opacity:1;transform:none}
+.ct{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+@media(max-width:820px){.ct{grid-template-columns:1fr}}
+.ct form{display:grid;gap:12px}
+.ct input,.ct textarea{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;color:var(--ink);font:500 16px Manrope}
+.ct button{background:var(--a);border:0;border-radius:14px;padding:16px;font:800 16px Manrope;cursor:pointer}
+footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-size:14px}
+.cur{position:fixed;width:14px;height:14px;border-radius:50%;background:var(--a);pointer-events:none;z-index:80;transform:translate(-50%,-50%);transition:width .25s,height .25s;mix-blend-mode:difference}
+.cur.big{width:70px;height:70px}
+@media(hover:none){.cur{display:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.line span{transform:none}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="cur" id="cur"></div>
+<div class="wipe" id="wipe"><i></i><i></i><i></i><i></i><i></i></div>
+<header><div class="wrap"><a class="logo" href="#home">КОМПАНИЯ</a><nav id="nav"><a href="#home">Главная</a><a href="#about">О компании</a><a href="#services">Услуги</a><a href="#cases">Проекты</a><a href="#contacts">Контакты</a></nav></div></header>
+
+<main>
+<div class="page" data-p="home">
+ <div class="hero wrap"><div class="blob"></div>
+  <h1><span class="line"><span>Делаем</span></span><span class="line"><span>бизнес <em>заметным</em></span></span><span class="line"><span>и понятным</span></span></h1>
+  <div class="row"><p>Премиум-концепт сайта компании: плавные переходы между страницами, живые акценты и аккуратная типографика. Тексты и фото - ваши.</p><a class="mag" href="#contacts" id="mag">Обсудить<br>проект →</a></div></div>
+ <div class="mq"><div>ПРОИЗВОДСТВО · ЛОГИСТИКА · СТРОИТЕЛЬСТВО · IT · ТОРГОВЛЯ · УСЛУГИ · ПРОИЗВОДСТВО · ЛОГИСТИКА · СТРОИТЕЛЬСТВО · IT · ТОРГОВЛЯ · УСЛУГИ ·</div></div>
+ <section class="wrap"><div class="k rv">В цифрах</div><h2 class="rv">Работаем на результат</h2>
+  <div class="nums rv"><div><b data-n="12">0</b><span>лет на рынке</span></div><div><b data-n="340">0</b><span>проектов</span></div><div><b data-n="98">0</b><span>% клиентов возвращаются</span></div><div><b data-n="24">0</b><span>часа - ответ на заявку</span></div></div></section>
+</div>
+
+<div class="page" data-p="about"><section class="wrap" style="padding-top:160px"><div class="k">О компании</div>
+ <h1 style="font:800 clamp(40px,7vw,96px)/.95 Unbounded;letter-spacing:-.05em"><span class="line"><span>Команда, которая</span></span><span class="line"><span>отвечает за <em style="font-style:normal;color:var(--a)">результат</em></span></span></h1>
+ <p class="rv" style="color:var(--muted);font-size:19px;max-width:680px;margin-top:30px">Здесь - история компании, миссия, команда и сертификаты. Каждая страница открывается со шторкой-переходом, блоки появляются по мере прокрутки.</p></section></div>
+
+<div class="page" data-p="services"><section class="wrap" style="padding-top:160px"><div class="k">Услуги</div><h2>Что мы делаем</h2>
+ <div class="svc" id="svc"></div></section></div>
+
+<div class="page" data-p="cases"><section class="wrap" style="padding-top:160px"><div class="k">Проекты</div><h2>Избранные работы</h2>
+ <div class="cases">
+  <a class="cs rv" href="#contacts"><div class="im"><div style="background:radial-gradient(circle at 30% 30%,#c8ff3d,#2b6b3a)"></div></div><div class="t"><b>Завод «Пример»</b><span>сайт и каталог · +120% заявок</span></div></a>
+  <a class="cs rv" href="#contacts"><div class="im"><div style="background:radial-gradient(circle at 70% 40%,#3dd6ff,#1d3a8a)"></div></div><div class="t"><b>ЛогистикПро</b><span>калькулятор доставки · 3 400 расчётов</span></div></a>
+  <a class="cs rv" href="#contacts"><div class="im"><div style="background:radial-gradient(circle at 40% 60%,#7a5cff,#2a1258)"></div></div><div class="t"><b>СтройДом</b><span>редизайн · время на сайте ×2</span></div></a>
+ </div></section></div>
+
+<div class="page" data-p="contacts"><section class="wrap" style="padding-top:160px"><div class="ct"><div><div class="k">Контакты</div><h2>Расскажите<br>о задаче</h2><p style="color:var(--muted)">Адрес, телефон, карта и мессенджеры - на этом месте будут ваши.</p></div>
+ <form id="f"><input placeholder="Имя" required><input placeholder="Телефон" required><textarea rows="4" placeholder="Коротко о задаче"></textarea><button>Отправить заявку</button><p id="ok" style="display:none;color:var(--a)">Демо: на сайте заявка уйдёт в почту и Telegram.</p></form></div></section></div>
+</main>
+<footer><div class="wrap">Премиум-концепт сайта компании · 10 страниц в проекте, здесь показаны 5 · данные демонстрационные</div></footer>
+<script>
+const RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const SV=[['Стратегия и аудит','Разбираем бизнес, конкурентов и путь клиента - находим, где теряются заявки.'],['Дизайн и разработка','Сайт под вашу задачу: от лендинга до корпоративного портала на 10+ страниц.'],['Продвижение','SEO, Яндекс Директ и карты - приводим клиентов, а не просто трафик.'],['Поддержка','Обновления, правки и отчёты каждый месяц.']];
+document.getElementById('svc').innerHTML=SV.map((s,i)=>`<div class="sv${i?'':' open'}"><div class="h"><b>0${i+1} · ${s[0]}</b><i>+</i></div><div class="b"><div><p>${s[1]}</p></div></div></div>`).join('');
+document.getElementById('svc').onclick=e=>{const s=e.target.closest('.sv');if(s)s.classList.toggle('open')};
+const pages=[...document.querySelectorAll('.page')],wipe=document.getElementById('wipe');
+function show(id){pages.forEach(p=>p.classList.toggle('on',p.dataset.p===id));document.querySelectorAll('#nav a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+id));scrollTo(0,0);observe();count()}
+function route(){const id=(location.hash||'#home').slice(1);if(!pages.some(p=>p.dataset.p===id))return;
+ if(RM||!document.querySelector('.page.on')){show(id);return}
+ wipe.className='wipe in';setTimeout(()=>{show(id);wipe.className='wipe out';setTimeout(()=>wipe.className='wipe',800)},620)}
+let io;addEventListener('hashchange',route);route();
+function observe(){io&&io.disconnect();io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.15});document.querySelectorAll('.page.on .rv').forEach(el=>{el.classList.remove('in');io.observe(el)})}
+function count(){document.querySelectorAll('.page.on [data-n]').forEach(el=>{const n=+el.dataset.n;const ob=new IntersectionObserver(es=>{if(!es[0].isIntersecting)return;ob.disconnect();const t0=performance.now();(function f(t){const p=Math.min(1,(t-t0)/1500),e=1-Math.pow(1-p,3);el.textContent=Math.round(n*e);if(p<1)requestAnimationFrame(f)})(t0)});ob.observe(el)})}
+const cur=document.getElementById('cur');addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px'});
+document.addEventListener('mouseover',e=>cur.classList.toggle('big',!!e.target.closest('a,button,.sv')));
+const mag=document.getElementById('mag');mag.addEventListener('mousemove',e=>{const r=mag.getBoundingClientRect();mag.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.3}px,${(e.clientY-r.top-r.height/2)*.3}px)`});mag.addEventListener('mouseleave',()=>mag.style.transform='');
+document.getElementById('f').onsubmit=e=>{e.preventDefault();document.getElementById('ok').style.display='block'};
+</script>
+</body>
+</html>
